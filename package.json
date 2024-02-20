@@ -6,17 +6,27 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "docker-compose": "docker-compose -f docker-compose.yml up",
+    "test": "jest --watch",
+    "coverage": "jest --coverage"
   },
   "dependencies": {
+    "mysql": "^2.18.1",
+    "next": "14.1.0",
+    "next-connect": "^1.0.0",
+    "next-link": "^2.0.0",
+    "next-preload-headers": "^3.0.4",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.1.0"
+    "react-toastify": "^10.0.4",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
-    "@types/react-dom": "^18"
+    "@types/react-dom": "^18",
+    "@types/uuid": "^9.0.8",
+    "typescript": "^5"
   }
 }
