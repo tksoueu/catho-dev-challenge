@@ -73,7 +73,7 @@ const SearchCandidates: React.FC<SearchCandidatesProps> = ({ onSearch }) => {
                 <h1>Buscar Candidatos</h1>
                 <form onSubmit={handleSubmit} className={styles.form}>
                     {skills.map((skill, index) => (
-                        <div key={index} className={styles.inputContainer}>
+                        <div key={index} className={styles.skillContainer}>
                             <CandidateInput
                                 value={skill}
                                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
