@@ -14,7 +14,7 @@ export default function Home() {
             <button className={styles.button}>Buscar Candidatos</button>
           </Link>
         </div>
-        <hr />
+        <hr className={styles.hr} />
       </div>
     </main>
   )

@@ -1,68 +1,74 @@
-"use client"
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import CandidateInput from './candidateInput';
+import styles from '@/styles/pages.module.css';
+import { CandidateError, CandidateRequest } from '@/models/candidate.model';
 
-import React, { useState } from 'react'
-import { toast } from 'react-toastify'
-import CandidateInput from './candidateInput'
-import styles from '@/styles/pages.module.css'
+interface CandidateFormProps {
+  onSubmit: (data: { name: string, skills: string }) => Promise<void>;
+}
 
-const CandidateForm = ({ onSubmit }) => {
-  const [name, setName] = useState('')
-  const [skills, setSkills] = useState([''])
-  const [errors, setErrors] = useState({})
-  const [isLoading, setIsLoading] = useState(false)
+const CandidateForm: React.FC<CandidateFormProps> = ({ onSubmit }) => {
+  const [name, setName] = useState<string>('');
+  const [skills, setSkills] = useState<string[]>(['']);
+  const [errors, setErrors] = useState<CandidateError>({})
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleAddSkill = () => {
-    setSkills([...skills, ''])
-  }
+    setSkills([...skills, '']);
+  };
 
-  const handleSkillChange = (index, value) => {
-    const newSkills = [...skills]
-    newSkills[index] = value
-    setSkills(newSkills)
-  }
+  const handleSkillChange = (index: number, value: string) => {
+    const newSkills = [...skills];
+    newSkills[index] = value;
+    setSkills(newSkills);
+  };
 
-  const handleRemoveSkill = (index) => {
+  const handleRemoveSkill = (index: number) => {
     if (skills.length > 1) {
-      const newSkills = skills.filter((_, i) => i !== index)
-      setSkills(newSkills)
+      const newSkills = skills.filter((_, i) => i !== index);
+      setSkills(newSkills);
     }
-  }
+  };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault()
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-    const skillsString = skills.join(', ')
+    const skillsString = skills.join(', ');
 
-    const validationErrors = validateCandidate({ name, skills })
+    const validationErrors = validateCandidate({ name, skills });
     if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors)
-      return
+      setErrors(validationErrors);
+      return;
     }
 
-    setIsLoading(true)
+    setIsLoading(true);
     try {
-      await onSubmit({ name, skills: skillsString })
-      setName('')
-      setSkills([''])
-      setErrors({})
-      toast.success('Candidato salvo com sucesso!')
-    } catch (error) {
-      toast.error('Erro ao salvar candidato: ' + error.message)
+      await onSubmit({ name, skills: skillsString });
+      setName('');
+      setSkills(['']);
+      setErrors({});
+      toast.success('Candidato salvo com sucesso!');
+    } catch (error: any) {
+      toast.error('Erro ao salvar candidato: ' + error.message);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
-  const validateCandidate = (candidate) => {
-    const errors = {}
+  const validateCandidate = (candidate: CandidateRequest) => {
+    const errors: any = {}
     if (!candidate.name) {
-      errors.name = 'É necessário informar o nome do candidato'
+        errors.name = 'É necessário informar o nome do candidato'
     }
     if (!candidate.skills || candidate.skills.length === 0) {
-      errors.skills = 'É necessário adicionar ao menos uma skill ao candidato'
+        errors.skills = ['É necessário adicionar ao menos uma skill ao candidato']
+    }
+    if (Object.keys(errors).length > 0) {
+        errors.message = 'Houve erros de validação. Por favor, corrija-os.'
     }
     return errors
-  }
+}
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
@@ -74,14 +80,13 @@ const CandidateForm = ({ onSubmit }) => {
           onChange={(e) => setName(e.target.value)}
           placeholder="Nome"
           className={styles.inputField}
-          error={errors.name}
         />
       </div>
       {skills.map((skill, index) => (
         <div key={index} className={styles.skillContainer}>
           <CandidateInput
             value={skill}
-            onChange={(e) => handleSkillChange(index, e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleSkillChange(index, e.target.value)}
           />
           <button
             type="button"
@@ -114,7 +119,7 @@ const CandidateForm = ({ onSubmit }) => {
         <p className={styles.errorText}>Erro: {errors.message}</p>
       )}
     </form>
-  )
-}
+  );
+};
 
-export default CandidateForm
+export default CandidateForm;
