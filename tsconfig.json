@@ -1,13 +1,22 @@
 {
   "compilerOptions": {
+<<<<<<< Updated upstream
+=======
+    "target": "es2016",
+    "module": "Node16",
+>>>>>>> Stashed changes
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
+<<<<<<< Updated upstream
     "module": "esnext",
     "moduleResolution": "bundler",
+=======
+    "moduleResolution": "Node16",
+>>>>>>> Stashed changes
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -16,6 +25,10 @@
       "@/*": ["./src/*"]
     }
   },
+<<<<<<< Updated upstream
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/addCandidate/page.js"],
+=======
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/addCandidate/page.js", "babel.config.js", "config.js", "src/services/candidate.service.js", "tests/services/candidate.service.test.js"],
+>>>>>>> Stashed changes
   "exclude": ["node_modules"]
 }
