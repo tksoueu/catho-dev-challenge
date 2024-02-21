@@ -40,3 +40,4 @@ yarn test
 
 ## Como este repositório será fechado e não são informações sigilosas, mantive o arquivo .env fora do .gitignore, para facilitar a utilização do sistema.
 
+# Os arquivos de teste estão prontos para testar as rotas da api, o service e os componentes, porém a configuração do Jest está aparentemente errada e não encontrei uma forma de consertá-la ainda.
