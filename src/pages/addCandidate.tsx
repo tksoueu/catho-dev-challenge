@@ -9,9 +9,6 @@ function AddCandidatePage() {
 
   const HandleCandidateSubmit = async (candidate: Candidate) => {
     
-    console.log(candidate)
-    console.log(JSON.stringify(candidate))
-    
     try {
       const response = await fetch('/api/candidates', {
         method: 'POST',
@@ -20,7 +17,6 @@ function AddCandidatePage() {
           'Content-Type': 'application/json',
         },
       })
-      console.log('r>', response.status)
 
       if (!response.ok) {
         throw new Error('Erro ao salvar candidato. Por favor, tente novamente.')

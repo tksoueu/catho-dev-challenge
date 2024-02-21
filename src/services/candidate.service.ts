@@ -38,8 +38,6 @@ const candidateService = {
     },
 
     searchCandidates: async (skills: string[]): Promise<CandidateResponse | null> => {
-        console.log('entrou no searchCandidates')
-        console.log('skills> ', skills)
         try {
             const candidates: CandidateReturn[] = await new Promise((resolve, reject) => {
                 catho.query('SELECT * FROM candidates', (error: Error | null, results: CandidateReturn[]) => {
@@ -61,10 +59,8 @@ const candidateService = {
     
             for (const candidate of candidates) {
                 const candidateSkills = candidate.skills.split(',').map(skill => skill.replace(/"/g, '').trim())
-                console.log('name> ', candidate.name, ' skills> ', candidateSkills)
     
                 const coveredSkills = candidateSkills.filter(skill => skills.includes(skill)).length
-                console.log('covered skills> ', coveredSkills)
     
                 if (coveredSkills > maxSkillsCovered) {
                     maxSkillsCovered = coveredSkills
@@ -76,8 +72,6 @@ const candidateService = {
                 }
             }
 
-            console.log('service matched candidate> ', matchedCandidate)
-    
             return matchedCandidate
         } catch (error) {
             console.error('Erro na procura por candidatos:', error)

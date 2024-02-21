@@ -48,7 +48,6 @@ const SearchCandidates: React.FC<SearchCandidatesProps> = ({ onSearch }) => {
     
             if (response.ok) {
                 const matchedCandidate = await response.json()
-                console.log(matchedCandidate)
                 setFoundCandidate(matchedCandidate)
                 setShowModal(true)
             } else {

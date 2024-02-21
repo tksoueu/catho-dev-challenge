@@ -17,5 +17,6 @@ export interface CandidateReturn {
   skills: string
 }
 
+export interface CandidateErrorRequest extends Omit<CandidateReturn, 'id'> {}
 export interface CandidateRequest extends Omit<Candidate, 'id' | 'skillCount'> {}
 export interface CandidateResponse extends Omit<Candidate, 'skillCount'> {}
