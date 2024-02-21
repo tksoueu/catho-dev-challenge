@@ -1,40 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Para iniciar o projeto
 
-## Getting Started
-
-First, run the development server:
+Primeiramente, rode o docker compose em um terminal na raíz do projeto.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run docker-compose
+# ou
+yarn docker-compose
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Se ocorrer certo, você poderá entrar em [http://localhost:8080](http://localhost:8080) para checar a página do adminer do banco.
+As credenciais são:
+```bash
+host: "localhost"
+user: "user"
+password: "senha"
+database: "catho"
+```
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Após isso, já se pode rodar
+```bash
+npm run dev
+# ou
+yarn dev
+```
+Para que o aplicativo seja colocado em ambiente de desenvolvimento.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Na tela inicial possuímos 2 botões onde ao clicar somos redirecionados para a página de adicionar novo candidato `pages/api/candidates.tsx` ou para buscar candidato `pages/api/search.tsx`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+A tela de adicionar candidatos permite adicionar um novo candidato, informando nome e skills (na quantidade desejada, porém sendo obrigatório ao menos uma) no banco. Já a tela de busca permite buscar os candidatos por skills (também quantas desejar, sendo obrigatório ao menos uma).
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Para isso são utilizadas requisições GET e POST na api local.
 
-## Learn More
+Os testes podem ser rodados utilizando
+```bash
+npm run test
+# ou
+yarn test
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Como este repositório será fechado e não são informações sigilosas, mantive o arquivo .env fora do .gitignore, para facilitar a utilização do sistema.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
