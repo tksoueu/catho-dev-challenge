@@ -30,6 +30,8 @@
 
 .inputContainer {
   margin-bottom: 10px;
+  display: flex;
+  margin-left: 20px;
 }
 
 .inputField {
@@ -44,7 +46,6 @@
   align-items: center;
   margin-bottom: 5px;
   margin-top: 5px;
-  margin-left: 63px;
 }
 
 .addButton {

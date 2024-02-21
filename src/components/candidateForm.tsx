@@ -1,60 +1,60 @@
-import React, { useState } from 'react';
-import { toast } from 'react-toastify';
-import CandidateInput from './candidateInput';
-import styles from '@/styles/pages.module.css';
-import { CandidateError, CandidateRequest } from '@/models/candidate.model';
+import React, { useState } from 'react'
+import { toast } from 'react-toastify'
+import CandidateInput from './candidateInput'
+import styles from '@/styles/pages.module.css'
+import { CandidateError, CandidateRequest } from '@/models/candidate.model'
 
 interface CandidateFormProps {
-  onSubmit: (data: { name: string, skills: string }) => Promise<void>;
+  onSubmit: (data: { name: string, skills: string }) => Promise<void>
 }
 
 const CandidateForm: React.FC<CandidateFormProps> = ({ onSubmit }) => {
-  const [name, setName] = useState<string>('');
-  const [skills, setSkills] = useState<string[]>(['']);
+  const [name, setName] = useState<string>('')
+  const [skills, setSkills] = useState<string[]>([''])
   const [errors, setErrors] = useState<CandidateError>({})
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const handleAddSkill = () => {
-    setSkills([...skills, '']);
-  };
+    setSkills([...skills, ''])
+  }
 
   const handleSkillChange = (index: number, value: string) => {
-    const newSkills = [...skills];
-    newSkills[index] = value;
-    setSkills(newSkills);
-  };
+    const newSkills = [...skills]
+    newSkills[index] = value
+    setSkills(newSkills)
+  }
 
   const handleRemoveSkill = (index: number) => {
     if (skills.length > 1) {
-      const newSkills = skills.filter((_, i) => i !== index);
-      setSkills(newSkills);
+      const newSkills = skills.filter((_, i) => i !== index)
+      setSkills(newSkills)
     }
-  };
+  }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault()
 
-    const skillsString = skills.join(', ');
+    const skillsString = skills.join(', ')
 
-    const validationErrors = validateCandidate({ name, skills });
+    const validationErrors = validateCandidate({ name, skills })
     if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
+      setErrors(validationErrors)
+      return
     }
 
-    setIsLoading(true);
+    setIsLoading(true)
     try {
-      await onSubmit({ name, skills: skillsString });
-      setName('');
-      setSkills(['']);
-      setErrors({});
-      toast.success('Candidato salvo com sucesso!');
+      await onSubmit({ name, skills: skillsString })
+      setName('')
+      setSkills([''])
+      setErrors({})
+      toast.success('Candidato salvo com sucesso!')
     } catch (error: any) {
-      toast.error('Erro ao salvar candidato: ' + error.message);
+      toast.error('Erro ao salvar candidato: ' + error.message)
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
   const validateCandidate = (candidate: CandidateRequest) => {
     const errors: any = {}
@@ -119,7 +119,7 @@ const CandidateForm: React.FC<CandidateFormProps> = ({ onSubmit }) => {
         <p className={styles.errorText}>Erro: {errors.message}</p>
       )}
     </form>
-  );
-};
+  )
+}
 
-export default CandidateForm;
+export default CandidateForm

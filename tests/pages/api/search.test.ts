@@ -1,13 +1,12 @@
-import handler from '../../../src/pages/api/search.jsx'
+import handler from '../../../src/pages/api/search'
 import candidateService from '../../../src/services/candidate.service.js'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 const mockResponse = () => {
-  const res: Partial<NextApiResponse> = {
-    status: jest.fn(),
-    json: jest.fn(),
-    end: jest.fn(),
-  }
+  const res: Partial<NextApiResponse> = {}
+  res.status = jest.fn().mockReturnValue(res)
+  res.json = jest.fn().mockReturnValue(res)
+  res.end = jest.fn().mockReturnValue(res)
   return res as NextApiResponse
 }
 

@@ -29,7 +29,6 @@ const CandidateModal: React.FC<CandidateModalProps> = ({ isOpen, onClose, candid
     >
       <div className={styles.container}>
         <h2 className={styles.title}>Resultado da busca de candidatos</h2>
-        <button className={styles.button} onClick={handleCloseModal}>Fechar</button>
         {candidate && (
           <div className={styles.candidateInfo}>
             <h3>Nome:</h3>
@@ -38,6 +37,7 @@ const CandidateModal: React.FC<CandidateModalProps> = ({ isOpen, onClose, candid
             <p>{formatSkills(candidate.skills)}</p>
           </div>
         )}
+        <button className={styles.button} onClick={handleCloseModal}>Fechar</button>
       </div>
     </Modal>
   )
