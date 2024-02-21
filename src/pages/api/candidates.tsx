@@ -24,7 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const candidate = {
       name,
-      skills
+      skills,
     }
 
     await candidateService.addCandidate(candidate)
