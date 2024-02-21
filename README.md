@@ -7,6 +7,7 @@ npm run docker-compose
 # ou
 yarn docker-compose
 ```
+* É necessário ter o docker desktop rodando em sua máquina
 
 Se ocorrer certo, você poderá entrar em [http://localhost:8080](http://localhost:8080) para checar a página do adminer do banco.
 As credenciais são:
@@ -39,5 +40,3 @@ yarn test
 ```
 
 ## Como este repositório será fechado e não são informações sigilosas, mantive o arquivo .env fora do .gitignore, para facilitar a utilização do sistema.
-
-## Os arquivos de teste estão prontos para testar as rotas da api, o service e os componentes, porém a configuração do Jest está aparentemente errada e não encontrei uma forma de consertá-la ainda.
