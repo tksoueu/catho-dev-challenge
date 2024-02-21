@@ -1,6 +1,7 @@
 {
   "name": "catho-dev-challenge",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,7 +9,11 @@
     "start": "next start",
     "lint": "next lint",
     "docker-compose": "docker-compose -f docker-compose.yml up",
+<<<<<<< Updated upstream
     "test": "jest --watch",
+=======
+    "test": "NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" npx jest",
+>>>>>>> Stashed changes
     "coverage": "jest --coverage"
   },
   "dependencies": {
@@ -35,6 +40,12 @@
     "@types/uuid": "^9.0.8",
     "babel-jest": "^29.7.0",
     "jest": "^29.7.0",
+<<<<<<< Updated upstream
     "typescript": "^5"
+=======
+    "jest-environment-jsdom": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.3.3"
+>>>>>>> Stashed changes
   }
 }

@@ -1,9 +1,8 @@
 import { catho } from "./db"
-import { Candidate, CandidateRequest, CandidateResponse, CandidateReturn } from "../models/candidate.model"
 import { v4 as uuidv4 } from 'uuid'
 
-const validateCandidate = (candidate: CandidateRequest) => {
-    const errors: any = {}
+const validateCandidate = (candidate) => {
+    const errors = {}
     if (!candidate.name) {
         errors.name = 'É necessário informar o nome do candidato'
     }
@@ -17,7 +16,7 @@ const validateCandidate = (candidate: CandidateRequest) => {
 }
 
 const candidateService = {
-    addCandidate: async (candidate: CandidateRequest): Promise<void | any> => {
+    addCandidate: async (candidate) => {
         try {
             const validationErrors = validateCandidate(candidate)
             if (Object.keys(validationErrors).length > 0) {
@@ -37,10 +36,10 @@ const candidateService = {
         }
     },
 
-    searchCandidates: async (skills: string[]): Promise<CandidateResponse | null> => {
+    searchCandidates: async (skills) => {
         try {
-            const candidates: CandidateReturn[] = await new Promise((resolve, reject) => {
-                catho.query('SELECT * FROM candidates', (error: Error | null, results: CandidateReturn[]) => {
+            const candidates = await new Promise((resolve, reject) => {
+                catho.query('SELECT * FROM candidates', (error, results) => {
                     if (error) {
                         reject(error)
                     } else {
@@ -54,7 +53,7 @@ const candidateService = {
                 return null
             }
     
-            let matchedCandidate: CandidateResponse | null = null
+            let matchedCandidate = null
             let maxSkillsCovered = -1
     
             for (const candidate of candidates) {
